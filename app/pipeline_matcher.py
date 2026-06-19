@@ -25,6 +25,12 @@ def _normalise(text: str) -> str:
     return re.sub(r"[^a-z0-9 ]", "", text.lower())
 
 
+def _word_boundary_match(term: str, text: str) -> bool:
+    """Return True if *term* appears as a whole-word sequence in *text*."""
+    pattern = r"(?<![a-z0-9])" + re.escape(term) + r"(?![a-z0-9])"
+    return bool(re.search(pattern, text))
+
+
 def match_pipeline(
     entities: Dict[str, Any],
     db: pd.DataFrame,
@@ -32,6 +38,9 @@ def match_pipeline(
     """
     Find pipeline entries that match any extracted entity
     (company, drug, or disease).
+
+    Matching uses word-boundary checks to avoid false positives from
+    partial substring overlaps (e.g. "phase" matching "phases").
 
     Args:
         entities: dict returned by entity_extractor (companies, drugs, diseases)
@@ -46,6 +55,9 @@ def match_pipeline(
         + [_normalise(dis) for dis in entities.get("diseases", [])]
     )
 
+    # Filter out very short tokens that are too ambiguous
+    candidate_terms = [t for t in candidate_terms if len(t) >= 4]
+
     if not candidate_terms:
         return []
 
@@ -54,8 +66,10 @@ def match_pipeline(
         row_text = _normalise(
             f"{row.get('company', '')} {row.get('drug_name', '')} {row.get('indication', '')}"
         )
-        if any(term in row_text or row_text in term for term in candidate_terms
-               if len(term) >= 4):  # skip very short tokens
+        if any(
+            _word_boundary_match(term, row_text) or _word_boundary_match(row_text, term)
+            for term in candidate_terms
+        ):
             matched_rows.append(row.to_dict())
 
     # Deduplicate by (company, drug_name)
