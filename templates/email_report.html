@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HM Intelligence Report</title>
+<style>
+  body { font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', Arial, sans-serif; background:#f4f6f9; margin:0; padding:0; color:#222; }
+  .wrapper { max-width:760px; margin:0 auto; background:#fff; border-radius:8px; overflow:hidden; box-shadow:0 2px 12px rgba(0,0,0,0.1); }
+  .header { background:linear-gradient(135deg,#003087 0%,#0057b8 100%); padding:32px 36px; }
+  .header h1 { color:#fff; margin:0 0 6px; font-size:24px; letter-spacing:-0.5px; }
+  .header p { color:#b8d4ff; margin:0; font-size:14px; }
+  .badge { display:inline-block; background:rgba(255,255,255,0.2); color:#fff; border-radius:4px; padding:2px 8px; font-size:12px; margin-right:6px; }
+  .section { padding:24px 36px; border-bottom:1px solid #eef0f4; }
+  .section:last-child { border-bottom:none; }
+  .section-title { font-size:16px; font-weight:700; color:#003087; margin:0 0 16px; display:flex; align-items:center; gap:8px; }
+  .section-title .icon { font-size:20px; }
+  .exec-summary { background:#f0f6ff; border-left:4px solid #003087; padding:16px 20px; border-radius:0 6px 6px 0; font-size:15px; line-height:1.7; color:#1a1a2e; }
+  .insight-card { background:#fff; border:1px solid #e2e8f0; border-radius:8px; padding:18px 20px; margin-bottom:14px; }
+  .insight-card .insight-title { font-weight:700; font-size:14px; color:#1a202c; margin-bottom:8px; display:flex; align-items:center; gap:8px; }
+  .urgency-high   { background:#fff0f0; color:#c0392b; border:1px solid #f5c6cb; border-radius:4px; padding:1px 7px; font-size:11px; font-weight:600; }
+  .urgency-medium { background:#fff8e1; color:#e67e22; border:1px solid #ffd48a; border-radius:4px; padding:1px 7px; font-size:11px; font-weight:600; }
+  .urgency-low    { background:#f0fff4; color:#27ae60; border:1px solid #a8e6c1; border-radius:4px; padding:1px 7px; font-size:11px; font-weight:600; }
+  .insight-detail { font-size:13px; color:#4a5568; line-height:1.6; margin-bottom:8px; }
+  .hanmi-tag { font-size:12px; color:#0057b8; background:#eef4ff; border-radius:4px; padding:6px 10px; margin-top:6px; }
+  .news-item { display:flex; gap:14px; padding:14px 0; border-bottom:1px solid #f1f3f6; }
+  .news-item:last-child { border-bottom:none; }
+  .news-source { min-width:120px; font-size:11px; font-weight:600; color:#718096; background:#f7f8fa; border-radius:4px; padding:2px 6px; text-align:center; align-self:flex-start; }
+  .news-title a { color:#1a202c; text-decoration:none; font-weight:600; font-size:13px; }
+  .news-title a:hover { color:#0057b8; }
+  .news-meta { font-size:11px; color:#a0aec0; margin-top:4px; }
+  .tags { margin-top:6px; display:flex; flex-wrap:wrap; gap:4px; }
+  .tag { background:#eef0f6; color:#4a5568; border-radius:3px; padding:1px 6px; font-size:11px; }
+  .tag-company  { background:#e8f4fd; color:#1a6fa8; }
+  .tag-drug     { background:#e8f8e8; color:#1a7a1a; }
+  .tag-disease  { background:#fdf3e8; color:#9a5c00; }
+  .tag-phase    { background:#f3e8fd; color:#6a1a9a; }
+  .pipeline-table { width:100%; border-collapse:collapse; font-size:12px; }
+  .pipeline-table th { background:#003087; color:#fff; padding:8px 10px; text-align:left; font-weight:600; }
+  .pipeline-table td { padding:8px 10px; border-bottom:1px solid #eef0f4; }
+  .pipeline-table tr:nth-child(even) td { background:#f9fafc; }
+  .phase-approved { color:#27ae60; font-weight:700; }
+  .phase-3 { color:#2980b9; font-weight:600; }
+  .phase-2 { color:#e67e22; }
+  .phase-1 { color:#95a5a6; }
+  .list-block { margin:0; padding:0 0 0 20px; }
+  .list-block li { font-size:13px; color:#4a5568; line-height:1.7; margin-bottom:4px; }
+  .opp-li::marker { color:#27ae60; }
+  .risk-li::marker { color:#e53e3e; }
+  .action-li::marker { color:#0057b8; }
+  .footer { background:#f7f8fa; padding:20px 36px; text-align:center; font-size:11px; color:#a0aec0; }
+  .footer strong { color:#718096; }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- Header -->
+  <div class="header">
+    <h1>📊 HM Intelligence Report</h1>
+    <p>
+      <span class="badge">🔍 {{ keyword }}</span>
+      <span class="badge">📅 최근 {{ days }}일</span>
+      <span class="badge">📰 뉴스 {{ news_count }}건</span>
+      <span class="badge">🧬 파이프라인 {{ pipeline_count }}건</span>
+    </p>
+    <p style="margin-top:10px;color:#b8d4ff;font-size:12px;">생성일시: {{ generated_at }}</p>
+  </div>
+
+  <!-- Executive Summary -->
+  <div class="section">
+    <div class="section-title"><span class="icon">💡</span> Executive Summary</div>
+    <div class="exec-summary">{{ insights.executive_summary }}</div>
+  </div>
+
+  <!-- Key Insights -->
+  {% if insights.key_insights %}
+  <div class="section">
+    <div class="section-title"><span class="icon">🎯</span> 핵심 인사이트</div>
+    {% for insight in insights.key_insights %}
+    <div class="insight-card">
+      <div class="insight-title">
+        {{ insight.title }}
+        <span class="urgency-{{ insight.urgency }}">{{ insight.urgency|upper }}</span>
+      </div>
+      <div class="insight-detail">{{ insight.detail }}</div>
+      {% if insight.implication_for_hanmi %}
+      <div class="hanmi-tag">🏢 한미 시사점: {{ insight.implication_for_hanmi }}</div>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <!-- News Articles -->
+  {% if articles %}
+  <div class="section">
+    <div class="section-title"><span class="icon">📰</span> 관련 뉴스 ({{ articles|length }}건)</div>
+    {% for article in articles %}
+    <div class="news-item">
+      <span class="news-source">{{ article.source }}</span>
+      <div>
+        <div class="news-title">
+          <a href="{{ article.url }}" target="_blank">{{ article.title }}</a>
+        </div>
+        <div class="news-meta">{{ article.published }}</div>
+        {% if article.summary %}
+        <div style="font-size:12px;color:#718096;margin-top:4px;line-height:1.5;">{{ article.summary[:200] }}{% if article.summary|length > 200 %}...{% endif %}</div>
+        {% endif %}
+        <div class="tags">
+          {% for c in article.entities.companies[:3] %}
+          <span class="tag tag-company">🏢 {{ c }}</span>
+          {% endfor %}
+          {% for d in article.entities.drugs[:3] %}
+          <span class="tag tag-drug">💊 {{ d }}</span>
+          {% endfor %}
+          {% for dis in article.entities.diseases[:2] %}
+          <span class="tag tag-disease">🩺 {{ dis }}</span>
+          {% endfor %}
+          {% for ph in article.entities.clinical_phases[:2] %}
+          <span class="tag tag-phase">📋 {{ ph }}</span>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <!-- Pipeline Table -->
+  {% if pipeline.pipeline_entries %}
+  <div class="section">
+    <div class="section-title"><span class="icon">🧬</span> 관련 파이프라인 현황 ({{ pipeline.pipeline_entries|length }}건)</div>
+    <table class="pipeline-table">
+      <thead>
+        <tr>
+          <th>회사</th>
+          <th>약물명</th>
+          <th>적응증</th>
+          <th>단계</th>
+          <th>기전</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for entry in pipeline.pipeline_entries %}
+        <tr>
+          <td><strong>{{ entry.company }}</strong></td>
+          <td>{{ entry.drug_name }}</td>
+          <td>{{ entry.indication }}</td>
+          <td>
+            {% if 'Approved' in entry.phase %}
+            <span class="phase-approved">{{ entry.phase }}</span>
+            {% elif 'Phase 3' in entry.phase or 'phase 3' in entry.phase %}
+            <span class="phase-3">{{ entry.phase }}</span>
+            {% elif 'Phase 2' in entry.phase or 'phase 2' in entry.phase %}
+            <span class="phase-2">{{ entry.phase }}</span>
+            {% else %}
+            <span class="phase-1">{{ entry.phase }}</span>
+            {% endif %}
+          </td>
+          <td style="color:#718096;">{{ entry.mechanism }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% endif %}
+
+  <!-- Competitive Landscape -->
+  {% if insights.competitive_landscape %}
+  <div class="section">
+    <div class="section-title"><span class="icon">🗺️</span> 경쟁 환경 분석</div>
+    <p style="font-size:13px;color:#4a5568;line-height:1.8;margin:0;">{{ insights.competitive_landscape }}</p>
+  </div>
+  {% endif %}
+
+  <!-- Opportunities / Risks / Actions -->
+  <div class="section">
+    <div class="section-title"><span class="icon">🚀</span> 기회 / 리스크 / 권고사항</div>
+
+    {% if insights.opportunities %}
+    <p style="font-weight:700;font-size:13px;color:#27ae60;margin:0 0 6px;">✅ 기회 요인</p>
+    <ul class="list-block">
+      {% for opp in insights.opportunities %}
+      <li class="opp-li">{{ opp }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% if insights.risks %}
+    <p style="font-weight:700;font-size:13px;color:#e53e3e;margin:16px 0 6px;">⚠️ 리스크 요인</p>
+    <ul class="list-block">
+      {% for risk in insights.risks %}
+      <li class="risk-li">{{ risk }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% if insights.recommended_actions %}
+    <p style="font-weight:700;font-size:13px;color:#0057b8;margin:16px 0 6px;">📌 권고 액션</p>
+    <ul class="list-block">
+      {% for action in insights.recommended_actions %}
+      <li class="action-li">{{ action }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <strong>HM Intelligence</strong> — Hanmi Pharmaceutical R&amp;D Intelligence Platform<br>
+    이 리포트는 AI가 자동 생성한 것으로, 투자 조언이나 공식 의견이 아닙니다.<br>
+    키워드: <strong>{{ keyword }}</strong> | 생성: {{ generated_at }}
+  </div>
+
+</div>
+</body>
+</html>
