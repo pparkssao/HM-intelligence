@@ -1,0 +1,57 @@
+company,drug_name,indication,phase,mechanism,modality,status,region,last_updated
+Biogen,Lecanemab (Leqembi),Alzheimer's Disease,Approved,Anti-amyloid beta (Aβ protofibrils),Monoclonal Antibody,Approved (FDA 2023),Global,2024-01-01
+Eli Lilly,Donanemab,Alzheimer's Disease,Phase 3,Anti-amyloid beta (N3pG),Monoclonal Antibody,Phase 3 complete (TRAILBLAZER-ALZ 2),Global,2024-06-01
+Roche,Gantenerumab,Alzheimer's Disease,Phase 3,Anti-amyloid beta,Monoclonal Antibody,Phase 3 failed (GRADUATE),Global,2023-11-01
+Biogen,Aducanumab (Aduhelm),Alzheimer's Disease,Approved,Anti-amyloid beta,Monoclonal Antibody,Approved (FDA 2021) - withdrawn 2024,Global,2024-01-01
+Novo Nordisk,Semaglutide,Alzheimer's Disease,Phase 3,GLP-1 receptor agonist,Small Molecule/Peptide,Phase 3 (EVOKE),Global,2024-01-01
+AbbVie,ABBV-CLS-7262,Alzheimer's Disease,Phase 2,EIF2B activator,Small Molecule,Phase 2,Global,2024-01-01
+Alector,AL002,Alzheimer's Disease,Phase 2,TREM2 agonist,Monoclonal Antibody,Phase 2,Global,2024-01-01
+Denali,DNL788,Alzheimer's Disease,Phase 2,RIPK1 inhibitor,Small Molecule,Phase 2,Global,2024-01-01
+Eisai,Lecanemab (Leqembi),Alzheimer's Disease,Approved,Anti-amyloid beta,Monoclonal Antibody,Approved (FDA 2023),Global,2024-01-01
+AC Immune,Semorinemab,Alzheimer's Disease,Phase 2,Anti-tau,Monoclonal Antibody,Phase 2,Global,2024-01-01
+AstraZeneca,AZD3293 (Lanabecestat),Alzheimer's Disease,Phase 3,BACE inhibitor,Small Molecule,Discontinued,Global,2020-01-01
+Johnson & Johnson,Seltorexant,Alzheimer's Disease,Phase 2,Orexin-2 receptor antagonist,Small Molecule,Phase 2,Global,2024-01-01
+Hanmi,HM15211,NASH/Obesity,Phase 2,GLP-1/GIP/Glucagon triagonist,Peptide,Phase 2,Global,2024-01-01
+Hanmi,HM12460A,Diabetes/Obesity,Phase 2,GLP-1 receptor agonist,Weekly Insulin,Phase 2,Korea/Global,2024-01-01
+Hanmi,Efpeglenatide,Diabetes,Phase 3,GLP-1 receptor agonist,Peptide,Phase 3,Global,2024-01-01
+Hanmi,Rolontis (Eflapegrastim),Neutropenia,Approved,G-CSF long-acting,Bispecific,Approved (FDA 2022),US,2024-01-01
+Hanmi,HM43239,AML,Phase 2,FLT3/AXL inhibitor,Small Molecule,Phase 2,Global,2024-01-01
+Hanmi,HM97662,Alzheimer's Disease,Preclinical,Tau aggregation inhibitor,Small Molecule,Preclinical,Korea,2024-01-01
+Hanmi,HS-10296 (Lazertinib),NSCLC,Phase 3,EGFR TKI (3rd gen),Small Molecule,Approved (Korea 2021),Korea/Global,2024-01-01
+Hanmi,Amycretin,Obesity/Diabetes,Phase 1,GLP-1/Amylin dual agonist,Peptide,Phase 1,Global,2024-06-01
+Pfizer,PF-06751979,Alzheimer's Disease,Phase 2,BACE inhibitor,Small Molecule,Phase 2,Global,2024-01-01
+Pfizer,Marstacimab,Hemophilia,Phase 3,Anti-TFPI,Monoclonal Antibody,Phase 3,Global,2024-01-01
+Novartis,Abelacimab,Atrial Fibrillation,Phase 3,Anti-Factor XI,Monoclonal Antibody,Phase 3,Global,2024-01-01
+Novartis,Ianalumab,Systemic Lupus,Phase 3,Anti-BAFF-R,Monoclonal Antibody,Phase 3,Global,2024-01-01
+AstraZeneca,Camizestrant,Breast Cancer,Phase 3,SERD (Oral),Small Molecule,Phase 3,Global,2024-01-01
+AstraZeneca,Tezepelumab (Tezspire),Asthma,Approved,Anti-TSLP,Monoclonal Antibody,Approved (FDA 2021),Global,2024-01-01
+AstraZeneca,Cotadutide,NASH/Obesity,Phase 2,GLP-1/Glucagon dual agonist,Peptide,Phase 2,Global,2024-01-01
+Roche,Tiragolumab,NSCLC,Phase 3,Anti-TIGIT,Monoclonal Antibody,Phase 3,Global,2024-01-01
+Roche,Faricimab (Vabysmo),AMD/DME,Approved,Anti-VEGF/Ang-2 bispecific,Bispecific Antibody,Approved (FDA 2022),Global,2024-01-01
+Bristol Myers Squibb,Deucravacitinib (Sotyktu),Psoriasis,Approved,TYK2 inhibitor,Small Molecule,Approved (FDA 2022),Global,2024-01-01
+Bristol Myers Squibb,Iberdomide,Multiple Myeloma,Phase 3,CELMoD,Small Molecule,Phase 3,Global,2024-01-01
+Merck,Sotatercept (Winrevair),Pulmonary Arterial Hypertension,Approved,Activin signaling inhibitor,Fusion Protein,Approved (FDA 2024),Global,2024-03-01
+Merck,Efinaconazole,Alzheimer's Disease,Preclinical,Tau phosphorylation,Small Molecule,Preclinical,Global,2024-01-01
+Sanofi,Dupilumab (Dupixent),Atopic Dermatitis/Asthma,Approved,Anti-IL-4Rα,Monoclonal Antibody,Approved (multiple),Global,2024-01-01
+Sanofi,Tolebrutinib,Multiple Sclerosis,Phase 3,BTK inhibitor,Small Molecule,Phase 3,Global,2024-01-01
+Gilead,Lenacapavir,HIV,Approved,Capsid inhibitor,Small Molecule,Approved (FDA 2022),Global,2024-01-01
+Gilead,Seladelpar,Primary Biliary Cholangitis,Phase 3,PPARδ agonist,Small Molecule,Phase 3,Global,2024-01-01
+AbbVie,Upadacitinib (Rinvoq),Rheumatoid Arthritis/Atopic Dermatitis,Approved,JAK1 inhibitor,Small Molecule,Approved (multiple),Global,2024-01-01
+AbbVie,Emraclidine,Schizophrenia,Phase 2,M4 muscarinic agonist,Small Molecule,Phase 2,Global,2024-01-01
+Vertex,VX-548,Acute Pain,Phase 3,Nav1.8 inhibitor,Small Molecule,Phase 3,Global,2024-01-01
+Vertex,VX-880,Type 1 Diabetes,Phase 1/2,Stem cell-derived islets,Cell Therapy,Phase 1/2,Global,2024-01-01
+Regeneron,Dupixent (Dupilumab),Multiple Indications,Approved,Anti-IL-4Rα,Monoclonal Antibody,Approved,Global,2024-01-01
+Regeneron,Itepekimab,Asthma/COPD,Phase 3,Anti-IL-33,Monoclonal Antibody,Phase 3,Global,2024-01-01
+Amgen,Tezepelumab,Asthma,Approved,Anti-TSLP,Monoclonal Antibody,Approved,Global,2024-01-01
+Amgen,Olpasiran,Cardiovascular Disease,Phase 3,siRNA (Lp(a)),siRNA,Phase 3,Global,2024-01-01
+Moderna,mRNA-1283,COVID-19,Approved,mRNA vaccine,mRNA,Approved,Global,2024-01-01
+Moderna,mRNA-4157,Melanoma,Phase 3,Personalized cancer vaccine,mRNA,Phase 3,Global,2024-01-01
+BioNTech,BNT111,Melanoma,Phase 2,mRNA cancer vaccine,mRNA,Phase 2,Global,2024-01-01
+Alnylam,Vutrisiran (Amvuttra),ATTR Amyloidosis,Approved,siRNA (TTR),siRNA,Approved (FDA 2022),Global,2024-01-01
+Intellia,NTLA-2001,ATTR Amyloidosis,Phase 1,CRISPR-Cas9 (TTR),Gene Editing,Phase 1,Global,2024-01-01
+Samsung Bioepis,SB17,Alzheimer's Disease,Biosimilar,Anti-amyloid beta biosimilar,Monoclonal Antibody,Development,Korea/Global,2024-01-01
+Yuhan,YH35324,NASH,Phase 2,FXR agonist + CCR2/5,Small Molecule,Phase 2,Korea/Global,2024-01-01
+OliX Pharmaceuticals,OLX702A,Alzheimer's Disease,Preclinical,siRNA (APOE4),siRNA,Preclinical,Korea,2024-01-01
+Daewoong,DWP16001,Obesity/Diabetes,Phase 2,GLP-1/GIP dual agonist,Small Molecule,Phase 2,Korea/Global,2024-06-01
+Ildong,IL-B42,Alzheimer's Disease,Phase 1,Amyloid aggregation inhibitor,Small Molecule,Phase 1,Korea,2024-01-01
+Boryung,BR2002,Alzheimer's Disease,Preclinical,BACE1 inhibitor,Small Molecule,Preclinical,Korea,2024-01-01
